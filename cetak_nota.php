@@ -20,7 +20,7 @@
 
     $sql = mysqli_query($koneksi, "SELECT no_nota, nama_costumer, biaya_service, total, bayar, kembali,  tanggal, id_user FROM transaksi WHERE id_transaksi='$id_transaksi'");
 
-    list($no_nota, $nama, $biaya_service, $total, $bayar, $kembali, $tanggal, $id_user) = mysqli_fetch_array($sql);
+    list($no_nota, $nama_costumer, $biaya_service, $total, $bayar, $kembali, $tanggal, $id_user) = mysqli_fetch_array($sql);
 
     echo '
         <center><h3>Cetak Nota Cuci Motor & Mobil</h3></center>
@@ -41,7 +41,7 @@
          <tbody>
 
            <tr>
-             <td>'.$nama.'</td>
+             <td>'.$nama_costumer.'</td>
              <td>RP.'.number_format ($biaya_service).'</td>
              <td>RP. '.number_format($total).'</td>
        
@@ -90,11 +90,11 @@
     <div style="margin: 0 0 50px 75%;">
         <p style="margin-bottom: 60px;">Petugas Kasir</p>
         <p>';
-
+        $id_user = $_SESSION['id_user'];
         $sql = mysqli_query($koneksi, "SELECT nama FROM user WHERE id_user='$id_user'");
-        list($nama) = mysqli_fetch_array($sql);
+        list($nama_user) = mysqli_fetch_array($sql);
 
-        echo "<b><u>$nama</u></b>";
+        echo "<b><u>$nama_user</u></b>";
 
         echo '</p>
     </div>
