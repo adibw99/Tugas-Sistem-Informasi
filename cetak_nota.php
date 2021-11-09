@@ -23,7 +23,7 @@
     list($no_nota, $nama, $biaya_service, $total, $bayar, $kembali, $tanggal, $id_user) = mysqli_fetch_array($sql);
 
     echo '
-        <center><h3>Cuci Bersih Mobil Motor</h3></center>
+        <center><h3>Cetak Nota Cuci Motor & Mobil</h3></center>
         <hr/>
         <h4>Nota Nomor : <b>'.$no_nota.'</b></h4>
         <table class="table table-bordered">
@@ -32,25 +32,60 @@
              <th width="15%">Nama Pelanggan</th>
              <th width="12%">Biaya Service</th>
              <th width="10%">Total Bayar</th>
-             <th width="10%">Bayar</th>
-             <th width="10%">Kembalian</th>
-             <th width="10%">Tanggal</th>
+      
            </tr>
+           
+           
          </thead>
+         
          <tbody>
 
            <tr>
              <td>'.$nama.'</td>
              <td>RP.'.number_format ($biaya_service).'</td>
              <td>RP. '.number_format($total).'</td>
-             <td>RP. '.number_format($bayar).'</td>
-             
-             <td>RP. '.number_format($kembali).'</td>
-             <td>'.date("d M Y", strtotime($tanggal)).'</td>
+       
              <tr/>
 
         </tbody>
-    </table>
+      </table>
+    
+      <table class="table table-bordered">
+
+        <tbody>
+        <thead>
+          <tr>
+            <th width="25%">Tanggal Transaksi</th>
+            <td width="75%">'.date("d M Y", strtotime($tanggal)).'</td>
+          </tr>
+          </thead>
+        </tbody>
+
+        <tbody>
+          
+            <tr>
+              <th width="25%">Bayar</th>
+              <td width="75%">RP. '.number_format($bayar).'</td>
+            </tr>
+        
+          
+        </tbody>
+      
+
+         <tbody>
+        <thead>
+          <tr>
+           <th width="25%">Kembalian</th>
+           <td width="75%">RP. '.number_format($kembali).'</td>
+          </tr>
+          </thead>
+        </tbody>
+       
+
+       
+        
+        </table>
+    
 
     <div style="margin: 0 0 50px 75%;">
         <p style="margin-bottom: 60px;">Petugas Kasir</p>

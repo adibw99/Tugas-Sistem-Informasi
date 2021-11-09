@@ -39,7 +39,7 @@ if( empty( $_SESSION['id_user'] ) ){
 					 <th width="20%">Nama Pelanggan</th>
 					 
 					 <th width="10%">Biaya Service</th>
-					 <th width="10%">Total Bayar</th>
+					 <th width="10%">Total Pendapatan</th>
 					 <th width="10%">Tanggal</th>
 					 <th width="20%">Tindakan</th>
 				   </tr>
@@ -60,7 +60,7 @@ if( empty( $_SESSION['id_user'] ) ){
 					 <td>'.$row['no_nota'].'</td>
 					 <td>'.$row['nama_costumer'].'</td>
 					 
-					 <td>'.$row['biaya_service'].'</td>
+					 <td>RP. '.number_format($row['biaya_service']).'</td>
 					 <td>RP. '.number_format($row['total']).'</td>
 					 <td>'.date("d M Y", strtotime($row['tanggal'])).'</td>
 					 <td>
