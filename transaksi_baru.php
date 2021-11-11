@@ -15,9 +15,10 @@ if( empty( $_SESSION['id_user'] ) ){
 		$kembali = $_REQUEST['kembali'];
 		$total = $_REQUEST['total'];
 		$id_user = $_SESSION['id_user'];
+		$id_service = $_REQUEST['id_service'];
 		
 
-		$sql = mysqli_query($koneksi, "INSERT INTO transaksi(no_nota, biaya_service, nama_costumer, bayar, kembali, total, tanggal, id_user) VALUES('$no_nota', '$biaya_service', '$nama', '$bayar', '$kembali', '$total', NOW(), '$id_user')");
+		$sql = mysqli_query($koneksi, "INSERT INTO transaksi(no_nota, biaya_service, nama_costumer, bayar, kembali, total, tanggal, id_user, id_service) VALUES('$no_nota', '$biaya_service', '$nama', '$bayar', '$kembali', '$total', NOW(), '$id_user', '$id_service')");
 
 		if($sql == true){
 			header('Location: ./admin.php?hlm=transaksi');
@@ -67,18 +68,25 @@ if( empty( $_SESSION['id_user'] ) ){
 
 				$q = mysqli_query($koneksi, "SELECT * FROM service");
 				while($data = mysqli_fetch_array($q)){
-					echo '<option value="'.$data['biaya'].'" >'.$data['id_service'].' . '.$data['jenis_kendaraan'].'</option>';
+					echo '<option value="'.$data['id_service'].'" >'.$data['id_service'].' . '.$data['jenis_kendaraan'].' harga Rp.'.$data['biaya'].'</option>';
 				}
 
 			?>
 			</select>
 		</div>
 	</div>
+	
+	<div class="form-group">
+		<label for="id_service" class="col-sm-2 control-label">ID Kendaraan</label>
+		<div class="col-sm-3">
+			<input type="text" class="form-control" id="id_service" name="id_service" value="" required readonly>
+		</div>
+	</div>
 
 	<div class="form-group">
 		<label for="biaya" class="col-sm-2 control-label">Biaya</label>
 		<div class="col-sm-3">
-			<input type="number" class="form-control" id="biaya" name="biaya" value="" required readonly>
+			<input type="number" class="form-control" id="biaya" name="biaya" value="" required >
 		</div>
 	</div>
 	<div class="form-group">
@@ -120,9 +128,15 @@ if( empty( $_SESSION['id_user'] ) ){
 
   $(document).ready(function(){
 
-    $("#jenis").change(function(){
-      var biaya = $(this).val();
-      $("#biaya").val(biaya);
+    // $("#jenis").change(function(){
+    //   var biaya = $(this).val();
+    //   $("#biaya").val(biaya);
+    // });
+
+	$("#jenis").change(function(){
+      var id_service = $(this).val();
+      $("#id_service").val(id_service);
+
     });
 
     $("#bayar").keyup(function(){
